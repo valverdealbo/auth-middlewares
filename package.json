@@ -9,7 +9,7 @@
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "homepage": "https://github.com/valverdealbo/auth-middlewares",
   "repository": {
     "type": "git",
