@@ -1,6 +1,6 @@
 # @valbo/auth-middlewares
 
-Express middlewares to authenticate via basic auth or jwt and to authorize based on user role.
+Express middlewares to authenticate via basic auth or JWT and to authorize based on user role.
 
 ![npm (scoped)](https://img.shields.io/npm/v/@valbo/auth-middlewares)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
@@ -17,7 +17,7 @@ Express middlewares to authenticate via basic auth or jwt and to authorize based
   - [Role authorization](#role-authorization)
   - [Skipping middleware routes](#skipping-middleware-routes)
   - [Sending the user](#sending-the-user)
-  - [Dynamic options](#dynamic-options)
+  - [Options](#options)
 
 ## Install
 
@@ -27,7 +27,7 @@ npm install @valbo/auth-middlewares
 
 ## Usage
 
-This package exports express middlewares for authentication via basic auth or JSON Web Token, and authorization based on user roles. See the [example](src/example.ts) file for a full example on how to use all these middlewares.
+This package exports express middlewares to authenticate via basic auth or JSON Web Token, and to authorize based on user roles. See the [example](src/example.ts) file for a full example on how to use all these middlewares. See the [options](#options) section at the end for an explanation on how to configure them.
 
 ### Basic authentication
 
@@ -57,9 +57,36 @@ The **nextRouteIfUnauthorized()** and **nextRouteIfForbidden()** middlewares ski
 
 **sendUser()** sends the user in **response.locals.user** as the response body or throws a **500** if there is no user in **response.locals**.
 
-### Dynamic options
+### Options
 
-The above middlewares that accept options are actually defined as:
+The **verifyBasicAuth()**, **verifyTokenAuth()**, **setTokenAuth()** and **allowRoles()** functions use the following options:
+
+````typescript
+export interface AuthenticationFunction {
+  (username: string, password?: string): Promise<object | undefined>; // return the user if it is valid or undefined if not
+}
+
+export interface AuthorizationFunction<User extends object, Role extends string> {
+  (user: User, ...roles: Role[]): boolean; // return whether the user has one of the requested roles
+}
+
+export interface BasicAuthenticationOptions {
+  authenticationFunction: AuthenticationFunction; // will be called with both username and password
+}
+
+export interface TokenAuthenticationOptions {
+  authenticationFunction: AuthenticationFunction; // will be called with only the username, since the JWT will already be valid
+  jwtSigningSecret: string; // the secret to sign and verify JWT
+  headerName: string; // the name of the header to use for the JWT, e.g. x-access-token
+  expiresIn?: number; // if set the JWT will expire in X seconds
+}
+
+export interface AuthorizationOptions<User extends object, Role extends string> {
+  authorizationFunction: AuthorizationFunction<User, Role>;
+}
+
+````
+Each of the above functions actually receives either a regular object of the above types, or a function that receives the request and response and returns an options object:
 
 ```typescript
 type Resolver<T> = T | ((request: Request, response: Response) => T);
@@ -70,8 +97,8 @@ function setTokenAuth(options: Resolver<TokenAuthenticationOptions>): RequestHan
 function allowRoles<User extends object, Role extends string>(options: Resolver<AuthorizationOptions<User, Role>>,): (...roles: Role[]) => RequestHandler;
 ```
 
-Which means that these middlewares accept either an options object or a function that receives a request and a response and returns an options object. The functional form of the options can be used to dynamically decide which options to use, for example:
+The functional form of the options can be used to dynamically decide which options to use, for example:
 
 - Allowing only certain roles to log in depending on the origin of the request, like a website only for admin users.
-- Using different JWT header names depending on the origin of the request, allowing users to log in simultaneously in multiple websites with different credentials.
+- Using different JWT header names depending on the origin of the request, allowing users to log in simultaneously with multiple accounts.
 - Returning a JWT with a different expiration depending on the role of the user.
