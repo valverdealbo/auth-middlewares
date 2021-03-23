@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/valverdealbo/auth-middlewares/compare/v1.0.2...v1.0.3) (2021-03-23)
+
+
+### Bug Fixes
+
+* revert github action name ([331633d](https://github.com/valverdealbo/auth-middlewares/commit/331633d1f5a8efb649c20541876ce17a681bd579))
+
 ## [1.0.2](https://github.com/valverdealbo/auth-middlewares/compare/v1.0.1...v1.0.2) (2021-03-23)
 
 
