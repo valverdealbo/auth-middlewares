@@ -1,0 +1,12 @@
+{
+  "testEnvironment": "node",
+  "collectCoverage": true,
+  "setupFilesAfterEnv": [],
+  "preset": "ts-jest",
+  "globals": {
+    "ts-jest": {
+      "isolatedModules": true
+    }
+  },
+  "testPathIgnorePatterns": ["/node_modules/", "/dist/"]
+}

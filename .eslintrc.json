@@ -1,15 +1,23 @@
 {
+  "root": true,
   "env": {
     "node": true,
     "jest": true
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 8,
+    "ecmaVersion": 2020,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
-  "extends": ["airbnb-base", "plugin:@typescript-eslint/recommended", "prettier", "prettier/@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "import", "jest", "promise", "prettier"],
+  "extends": [
+    "airbnb-base",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended",
+    "plugin:jest/recommended",
+    "plugin:promise/recommended",
+    "plugin:prettier/recommended"
+  ],
   "settings": {
     "import/resolver": {
       "node": {
@@ -19,6 +27,8 @@
   },
   "rules": {
     "no-underscore-dangle": "off",
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "import/prefer-default-export": "off",
+    "import/no-default-export": "error"
   }
 }

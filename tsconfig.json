@@ -1,18 +1,15 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es6",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "target": "es2020",
     "outDir": "./dist",
     "declaration": true,
     "sourceMap": true,
-    "alwaysStrict": true,
-    "noImplicitAny": true,
+    "strict": true,
     "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "strictFunctionTypes": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
-    "esModuleInterop": true
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]

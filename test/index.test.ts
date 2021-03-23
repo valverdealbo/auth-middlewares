@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies,@typescript-eslint/no-explicit-any */
+/* eslint-disable import/no-extraneous-dependencies */
 import express, { ErrorRequestHandler, RequestHandler } from 'express';
 import supertest from 'supertest';
 import * as jwt from 'jsonwebtoken';
@@ -14,7 +14,7 @@ import {
   nextRouteIfUnauthorized,
   nextRouteIfForbidden,
   sendUser,
-} from '.';
+} from '../src';
 
 const username = 'alice';
 const password = '12345678';
@@ -28,12 +28,12 @@ const authenticationFunctionThrow: AuthenticationFunction = async () => {
   throw new InternalServerErrorError();
 };
 
-const setUser: (user: any) => RequestHandler = user => (request, response, next) => {
+const setUser: (user: unknown) => RequestHandler = user => (request, response, next) => {
   response.locals.user = user;
   next();
 };
 
-const throwError: (error: any) => RequestHandler = error => () => {
+const throwError: (error: unknown) => RequestHandler = error => () => {
   throw error;
 };
 
