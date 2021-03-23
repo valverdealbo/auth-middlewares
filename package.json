@@ -1,6 +1,6 @@
 {
   "name": "@valbo/auth-middlewares",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Express middlewares to authenticate via basic auth or JWT and to authorize based on user role",
   "keywords": [
     "auth",
