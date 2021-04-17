@@ -2,10 +2,14 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  test-release:
+  lint-test-release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -13,6 +17,7 @@ jobs:
         with:
           node-version: 14.x
       - run: npm ci
+      - run: npm run lint
       - run: npm test
       - uses: coverallsapp/github-action@master
         with:
