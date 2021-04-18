@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/valverdealbo/auth-middlewares/compare/v1.0.4...v1.0.5) (2021-04-18)
+
+
+### Bug Fixes
+
+* update dependencies ([154cf87](https://github.com/valverdealbo/auth-middlewares/commit/154cf879699a820d5d174a9f324dc65ee7cda311))
+
 ## [1.0.4](https://github.com/valverdealbo/auth-middlewares/compare/v1.0.3...v1.0.4) (2021-04-17)
 
 
