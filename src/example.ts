@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import express, { Request, Response } from 'express';
 import {
   askBasicAuth,

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { promisify } from 'util';
-import { ErrorRequestHandler, Request, Response, RequestHandler } from 'express';
+import type { ErrorRequestHandler, Request, Response, RequestHandler } from 'express';
 import basicAuth from 'basic-auth';
 import * as jwt from 'jsonwebtoken';
 import { asyncMiddleware } from '@valbo/async-middleware';
