@@ -54,7 +54,7 @@
   "dependencies": {
     "@types/express": "4.x",
     "@valbo/async-middleware": "1.x",
-    "@valbo/http-errors": "1.x",
+    "@valbo/http-errors": "1.1.0",
     "basic-auth": "^2.0.1",
     "jsonwebtoken": "^8.5.1"
   },
